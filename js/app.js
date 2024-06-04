@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '/views/dashboard': dashboard,
             '/views/chat': chat,
             '/views/gameplay': gameplay,
+            '/views/register' : showRegistrationForm,
         };
 
         const path = window.location.pathname;

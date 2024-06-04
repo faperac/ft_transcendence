@@ -14,7 +14,9 @@ function login() {
 		</button>
 	  </p>
 	  <button type="submit" class="btn btn-primary btn-block">Login</button>
-	  <a href="/dashboard" data-link>Go to Dashboard</a>
+	  <div class="text-center">
+	  	<a href="#" onclick="showRegistrationForm()" data-link>create account</a>
+	  </div>
 	</form>
   </div>
 	`;
