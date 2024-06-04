@@ -1,5 +1,5 @@
 function dashboard() {
-	document.getElementById('app').innerHTML = `
+	document.getElementById('ft_transcendence').innerHTML = `
 	  <nav class="navbar navbar-dark bg-dark">
 		<a class="navbar-brand" href="#">Dashboard</a>
 		<span class="navbar-text">

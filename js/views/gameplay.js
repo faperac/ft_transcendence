@@ -1,5 +1,5 @@
 function gameplay() {
-	document.getElementById('app').innerHTML = `
+	document.getElementById('ft_transcendence').innerHTML = `
 	  <div class="container game-container">
 		<div class="game-area">
 		  <!-- Your game logic here (canvas, etc.) -->

@@ -1,21 +1,21 @@
 function login() {
-	document.getElementById('app').innerHTML = `
-	  <div class="container login-container">
-		<h2 class="text-center">Login</h2>
-		<form>
-		  <div class="form-group">
-			<label for="email">Email address</label>
-			<input type="email" class="form-control" id="email" placeholder="Enter email">
-		  </div>
-		  <div class="form-group">
-			<label for="password">Password</label>
-			<input type="password" class="form-control" id="password" placeholder="Password">
-		  </div>
-		  <button type="submit" class="btn btn-primary btn-block">Login</button>
-		  <div class="text-center">
-			<a href="/dashboard" data-link>Go to Dashboard</a>
-		  </div>
-		</form>
-	  </div>
+	document.getElementById('ft_transcendence').innerHTML = `
+	<h1>ft_pong_online</h1>
+	<div class="container login-container">
+	<form>
+	  <p>
+		<label for="username">username</label>
+		<input type="text" value="" placeholder="Enter Username" id="username">
+	  </p>
+	  <p>
+		<label for="password">password</label>
+		<input type="password" value="" placeholder="Enter Password" id="password" class="password">
+		<button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+		</button>
+	  </p>
+	  <button type="submit" class="btn btn-primary btn-block">Login</button>
+	  <a href="/dashboard" data-link>Go to Dashboard</a>
+	</form>
+  </div>
 	`;
   }

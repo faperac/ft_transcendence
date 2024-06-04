@@ -1,5 +1,5 @@
 function chat() {
-	document.getElementById('app').innerHTML = `
+	document.getElementById('ft_transcendence').innerHTML = `
 	  <div class="container-fluid chat-container">
 		<div class="row">
 		  <div class="col-md-3 friends-list">
