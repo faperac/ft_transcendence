@@ -46,6 +46,7 @@ label {
 	margin-bottom: 5px;
 	width: 100%;
 	font-weight: 900;
+	box-sizing: border-box;
 }
 
 input[type="text"], input[type="password"] {
@@ -53,7 +54,6 @@ input[type="text"], input[type="password"] {
 	padding: 10px;
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
-	border-radius: 5px;
 	background-color: #5AB2FF;
 	border-radius: 30px;
 	border: 1px solid black;
@@ -74,10 +74,9 @@ input[type="text"], input[type="password"] {
 	padding: 10px;
 	background-color: #007bff;
 	border: none;
-	border-radius: 5px;
+	border-radius: 30px;
 	color: #ffffff;
 	font-size: 16px;
-	cursor: pointer;
 }
 
 .btn-primary {
@@ -89,3 +88,28 @@ input[type="text"], input[type="password"] {
 	display: block;
 	width: 100%;
 }
+
+.password-wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+  }
+  
+  .password-wrapper input[type="text"], 
+  .password-wrapper input[type="password"] {
+	width: 100%;
+	padding-right: 40px;
+	box-sizing: border-box;
+  }
+  
+  .password-wrapper .unmask {
+	position: absolute;
+	right: 10px;
+	top: -15%;
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: black;
+  }
+  

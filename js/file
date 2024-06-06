@@ -1,0 +1,313 @@
+===== ../index.html =====
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ft_transcendence</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="ft_transcendence"></div>
+
+  <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/views/login.js"></script>
+  <script src="js/views/register.js"></script>
+  <script src="js/views/chat.js"></script>
+  <script src="js/views/gameplay.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/unmask.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
+===== ./app.js =====
+document.addEventListener('DOMContentLoaded', function () {
+    function navigateTo(url) {
+        console.log('Navigating to', url);
+        history.pushState(null, null, url);
+        router();
+    }
+
+    function router() {
+        console.log('Current path:', window.location.pathname);
+        const routes = {
+            '/views/login': login,
+            '/views/dashboard': dashboard,
+            '/views/chat': chat,
+            '/views/gameplay': gameplay,
+            '/views/register' : RegistrationForm,
+        };
+
+        const path = window.location.pathname;
+        const route = routes[path] || login;
+        route();
+    }
+
+    window.addEventListener('popstate', router);
+
+    document.addEventListener('click', function (event) {
+        if (event.target.matches('[data-link]')) {
+            event.preventDefault();
+            navigateTo(event.target.getAttribute('data-link'));
+        }
+    });
+
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('unmask') || event.target.closest('.unmask')) {
+          const button = event.target.closest('.unmask');
+          const input = button.previousElementSibling;
+          if (input.type === 'password') {
+            input.type = 'text';
+            button.querySelector('i').classList.remove('fa-lock');
+            button.querySelector('i').classList.add('fa-lock-open');
+          } else {
+            input.type = 'password';
+            button.querySelector('i').classList.remove('fa-lock-open');
+            button.querySelector('i').classList.add('fa-lock');
+          }
+        }
+      });
+
+    router();
+});
+
+===== ./views/chat.js =====
+function chat() {
+	document.getElementById('ft_transcendence').innerHTML = `
+	  <div class="container-fluid chat-container">
+		<div class="row">
+		  <div class="col-md-3 friends-list">
+			<h4>Friends</h4>
+			<ul class="list-group">
+			  <li class="list-group-item">Friend 1</li>
+			  <li class="list-group-item">Friend 2</li>
+			  <li class="list-group-item">Friend 3</li>
+			</ul>
+		  </div>
+		  <div class="col-md-9 chat-window">
+			<div class="messages">
+			  <div class="message">
+				<strong>Friend 1:</strong> Hello!
+			  </div>
+			  <div class="message">
+				<strong>You:</strong> Hi there!
+			  </div>
+			</div>
+			<div class="message-input">
+			  <input type="text" class="form-control" placeholder="Type a message...">
+			  <button class="btn btn-primary">Send</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	`;
+  }
+
+===== ./views/dashboard.js =====
+function dashboard() {
+	document.getElementById('ft_transcendence').innerHTML = `
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Dashboard</a>
+		<span class="navbar-text">
+			Welcome, User | <a href="#" class="text-light" data-link="/views/login">Logout</a>
+		</span>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3 sidebar">
+				<h4>Friends</h4>
+				<ul class="list-group">
+					<li class="list-group-item">Friend 1</li>
+					<li class="list-group-item">Friend 2</li>
+					<li class="list-group-item">Friend 3</li>
+				</ul>
+			</div>
+			<div class="col-md-9 main-content">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">User Info</h5>
+						<p class="card-text">Details about the user</p>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Ranked Match</h5>
+						<button class="btn btn-primary">Start Queueing</button>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Leaderboard</h5>
+						<ul class="list-group">
+							<li class="list-group-item">Player 1</li>
+							<li class="list-group-item">Player 2</li>
+							<li class="list-group-item">Player 3</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	`;
+  }
+
+===== ./views/gameplay.js =====
+function gameplay() {
+	document.getElementById('ft_transcendence').innerHTML = `
+	  <div class="container game-container">
+		<div class="game-area">
+		  <!-- Your game logic here (canvas, etc.) -->
+		</div>
+		<div class="game-info">
+		  <h4>Score: 1000</h4>
+		  <h5>Level: 2</h5>
+		</div>
+		<div class="controls mt-3">
+		  <button class="btn btn-primary">Pause</button>
+		  <button class="btn btn-danger">Exit</button>
+		</div>
+	  </div>
+	`;
+  }
+
+===== ./views/login.js =====
+function login() {
+	document.getElementById('ft_transcendence').innerHTML = `
+	<h1>ft_pong_online</h1>
+	<div class="container login-container">
+
+	<form id ="loginForm">
+	  <p>
+		<label for="username">username</label>
+		<input type="text" value="" placeholder="Enter Username" id="username">
+	  </p>
+	  <p>
+		<label for="password">password</label>
+		<div class="password-wrapper">
+			<input type="password" value="" placeholder="Enter Password" id="password" class="password">
+			<button class="unmask" type="button" title="Mask/Unmask password to check content">
+        		<i class="fas fa-lock"></i>
+			</button>
+		</div>
+	  </p>
+	  <button type="submit" class="btn btn-primary btn-block">Login</button>
+	  <div class="text-center">
+	  	<a href="#" onclick="showRegistrationForm()" data-link>create account</a>
+	  </div>
+	</form>
+  </div>
+	
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<h5 class="modal-title" id="errorModalLabel">Login Error</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	  </div>
+	  <div class="modal-body">
+		Invalid username or password
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	  </div>
+	</div>
+  </div>
+</div>
+  `;
+
+	document.getElementById('loginForm').addEventListener('submit', function (event) {
+		event.preventDefault();
+		const username = document.getElementById('username').value;
+		const password = document.getElementById('password').value;
+		
+		if (username === 'admin' && password === 'admin') {
+			navigateTo('/views/dashboard');
+		} else {
+			const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+			errorModal.show();
+		}
+	});
+
+
+
+  }
+
+===== ./views/unmask.js =====
+$(document).ready(function() {
+    $('.unmask').on('click', function(){
+      if($(this).prev('input').attr('type') == 'password')
+        changeType($(this).prev('input'), 'text');
+      else
+        changeType($(this).prev('input'), 'password');
+      return false;
+    });
+  
+    function changeType(x, type) {
+      if(x.prop('type') == type)
+        return x; //That was easy.
+      try {
+        return x.prop('type', type); //Stupid IE security will not allow this
+      } catch(e) {
+        var html = $("<div>").append(x.clone()).html();
+        var regex = /type=(\")?([^\"\s]+)(\")?/;
+        var tmp = $(html.match(regex) == null ?
+            html.replace(">", ' type="' + type + '">') :
+            html.replace(regex, 'type="' + type + '"') );
+        tmp.data('type', x.data('type') );
+        var events = x.data('events');
+        var cb = function(events) {
+          return function() {
+            for(var i in events) {
+              var y = events[i];
+              for(var j in y)
+                tmp.bind(i, y[j].handler);
+            }
+          }
+        }(events);
+        x.replaceWith(tmp);
+        setTimeout(cb, 10);
+        return tmp;
+      }
+    }
+  });
+===== ./views/register.js =====
+function RegistrationForm() {
+    document.getElementById('ft_transcendence').innerHTML = `
+      <h1>ft_pong_online - Register</h1>
+      <div class="container login-container">
+        <form id="registerForm">
+          <p>
+            <label for="username">username</label>
+            <input type="text" value="" placeholder="Enter Username" id="username">
+          </p>
+          <p>
+            <label for="password">password</label>
+            <input type="password" value="" placeholder="Enter Password" id="password" class="password">
+            <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+          </p>
+          <p>
+            <label for="profile-photo">Upload profile photo:</label>
+            <input type="file" id="profile-photo">
+          </p>
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+      </div>
+    `;
+
+    document.getElementById('registerForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // create account and add to database
+
+      alert('Account created successfully');
+      });
+  }
+  

@@ -1,8 +1,8 @@
-function showRegistrationForm() {
+function RegistrationForm() {
     document.getElementById('ft_transcendence').innerHTML = `
       <h1>ft_pong_online - Register</h1>
       <div class="container login-container">
-        <form>
+        <form id="registerForm">
           <p>
             <label for="username">username</label>
             <input type="text" value="" placeholder="Enter Username" id="username">
@@ -20,5 +20,13 @@ function showRegistrationForm() {
         </form>
       </div>
     `;
+
+    document.getElementById('registerForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // create account and add to database
+
+      alert('Account created successfully');
+      });
   }
   
