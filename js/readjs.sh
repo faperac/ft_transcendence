@@ -19,6 +19,10 @@ if [ -f "../index.html" ]; then
     append_file_contents "../index.html"
 fi
 
+if [ -f "../css/styles.css" ]; then
+    append_file_contents "../css/styles.css"
+fi
+
 # Loop through all .js files in the current directory and its subdirectories
 find . -name "*.js" -type f | while read -r file
 do

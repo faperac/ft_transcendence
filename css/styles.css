@@ -1,3 +1,12 @@
+.view {
+	display: none;
+	padding: 20px;
+}
+  
+.active-view {
+	display: block;
+}
+
 body {
 	display: flex;
 	justify-content: center;
