@@ -53,4 +53,4 @@ function login(navigateTo) {
 			errorModal.show();
 		}
 	});
-  }
+}

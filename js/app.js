@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () { 
   
+  function navigateTo(url, updateHistory = true) {
+    console.log('Navigating to', url);
+    const viewId = url.startsWith('/') ? url.slice(1) : url;
+    hideCurrentView();
+    showView(viewId);
+    if (updateHistory) {
+      history.pushState({}, '', url);
+    }
+  }
+
   function hideCurrentView() {
     const activeView = document.querySelector('.active-view');
     if (activeView) {
@@ -14,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (view) {
       view.classList.add('active-view');
       view.style.display = 'block';
+    } else if (viewId === 'register') {
+      RegistrationForm();
+    } else if (viewId === 'login') {
+      login(navigateTo);
     } else {
       console.error(`View with ID "${viewId}" not found`);
     }
@@ -36,28 +50,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.addEventListener('click', function (event) {
     if (event.target.matches('[data-link]')) {
-      event.preventDefault(); // Prevent default link behavior
+      event.preventDefault();
       const link = event.target.getAttribute('data-link');
-      navigateTo(link);  // Call navigateTo with the data-link value
+      navigateTo(link);
     }
   });
 
   document.addEventListener('click', function (event) {
     if (event.target.matches('[data-link="/views/register"]')) {
-      event.preventDefault(); // Prevent default link behavior
+      event.preventDefault();
       hideCurrentView();
-      showView('register'); // Show the 'register' view
+      showView('register');
     }
   });
-
-
-
-  function navigateTo(url) {
-    console.log('Navigating to', url);
-    const viewId = url.slice(1); // Remove leading slash
-    hideCurrentView();
-    showView(viewId);
-  }
 
     function router() {
         console.log('Current path:', window.location.pathname);
