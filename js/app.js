@@ -68,14 +68,14 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Current path:', window.location.pathname);
         const routes = {
             '/views/login': () => login(navigateTo),
-            '/views/dashboard': dashboard,
+            '/views/dashboard': () => dashboard(),
             '/views/chat': chat,
             '/views/gameplay': gameplay,
             '/views/register' : RegistrationForm,
         };
 
         const path = window.location.pathname;
-        const route = routes[path] || login;
+        const route = routes[path] || login();
         route();
     }
 

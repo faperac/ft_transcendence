@@ -1,3 +1,12 @@
+/* for login and register page*/
+.login-register-page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	margin: 0;
+}
+
 .view {
 	display: none;
 	padding: 20px;
@@ -11,7 +20,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: 90vh;
 	margin: 0;
 	font-family: Arial, sans-serif;
 	background-color: #FFF9D0;
@@ -24,6 +33,9 @@ h1 {
 }
 
 .login-container h1 {
+	display:flex;
+	justify-content: center;
+	align-items: center;
 	margin-bottom: 20px;
 }
 
@@ -69,7 +81,6 @@ input[type="text"], input[type="password"] {
 }
 
 .unmask {
-	display: inline-block;
 	margin-top: 10px;
 	padding: 10px;
 	background-color: #fff;
@@ -88,6 +99,7 @@ input[type="text"], input[type="password"] {
 	font-size: 16px;
 }
 
+/* button */
 .btn-primary {
 	background-color: #007bff;
 	border: 3px solid black;
@@ -98,6 +110,7 @@ input[type="text"], input[type="password"] {
 	width: 100%;
 }
 
+/* for password visibility toggle */
 .password-wrapper {
 	position: relative;
 	display: flex;
@@ -105,14 +118,14 @@ input[type="text"], input[type="password"] {
 	width: 100%;
   }
   
-  .password-wrapper input[type="text"], 
-  .password-wrapper input[type="password"] {
+	.password-wrapper input[type="text"], 
+	.password-wrapper input[type="password"] {
 	width: 100%;
 	padding-right: 40px;
 	box-sizing: border-box;
   }
   
-  .password-wrapper .unmask {
+.password-wrapper .unmask {
 	position: absolute;
 	right: 10px;
 	top: -15%;
@@ -120,5 +133,39 @@ input[type="text"], input[type="password"] {
 	border: none;
 	cursor: pointer;
 	color: black;
-  }
+}
   
+
+/* for dashboard.html */
+
+.dashboard-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar {
+
+	color: #FFF9D0;
+}
+
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+  }
+
+/* for user-info */
+@media (max-width: 768px) {
+	.user-info {
+		width: 100%;
+		padding: 20px;
+	}
+}
+
+

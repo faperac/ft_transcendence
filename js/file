@@ -15,6 +15,9 @@
 </head>
 <body>
   <div id="ft_transcendence"></div>
+  <body id="body">
+    <!-- ... -->
+  </body>
 
   <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -26,10 +29,25 @@
   <script src="js/views/gameplay.js"></script>
   <script src="js/views/unmask.js"></script>
 
+  <main>
+    <div id="/views/register" class="view" style="display: none;">Home content</div>
+    <div id="about" class="view" style="display: none;">About content</div>
+    <div id="contact" class="view" style="display: none;">Contact content</div>
+  </main>
+
 </body>
 </html>
 
 ===== ../css/styles.css =====
+/* for login and register page*/
+.login-register-page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	margin: 0;
+}
+
 .view {
 	display: none;
 	padding: 20px;
@@ -43,7 +61,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: 90vh;
 	margin: 0;
 	font-family: Arial, sans-serif;
 	background-color: #FFF9D0;
@@ -56,6 +74,9 @@ h1 {
 }
 
 .login-container h1 {
+	display:flex;
+	justify-content: center;
+	align-items: center;
 	margin-bottom: 20px;
 }
 
@@ -101,7 +122,6 @@ input[type="text"], input[type="password"] {
 }
 
 .unmask {
-	display: inline-block;
 	margin-top: 10px;
 	padding: 10px;
 	background-color: #fff;
@@ -120,6 +140,7 @@ input[type="text"], input[type="password"] {
 	font-size: 16px;
 }
 
+/* button */
 .btn-primary {
 	background-color: #007bff;
 	border: 3px solid black;
@@ -130,6 +151,7 @@ input[type="text"], input[type="password"] {
 	width: 100%;
 }
 
+/* for password visibility toggle */
 .password-wrapper {
 	position: relative;
 	display: flex;
@@ -137,14 +159,14 @@ input[type="text"], input[type="password"] {
 	width: 100%;
   }
   
-  .password-wrapper input[type="text"], 
-  .password-wrapper input[type="password"] {
+	.password-wrapper input[type="text"], 
+	.password-wrapper input[type="password"] {
 	width: 100%;
 	padding-right: 40px;
 	box-sizing: border-box;
   }
   
-  .password-wrapper .unmask {
+.password-wrapper .unmask {
 	position: absolute;
 	right: 10px;
 	top: -15%;
@@ -152,11 +174,56 @@ input[type="text"], input[type="password"] {
 	border: none;
 	cursor: pointer;
 	color: black;
-  }
+}
   
+
+/* for dashboard.html */
+
+.dashboard-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar {
+
+	color: #FFF9D0;
+}
+
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+	width: 100%;
+  }
+
+/* for user-info */
+@media (max-width: 768px) {
+	.user-info {
+		width: 100%;
+		padding: 20px;
+	}
+}
+
+
+
 ===== ./app.js =====
 document.addEventListener('DOMContentLoaded', function () { 
   
+  function navigateTo(url, updateHistory = true) {
+    console.log('Navigating to', url);
+    const viewId = url.startsWith('/') ? url.slice(1) : url;
+    hideCurrentView();
+    showView(viewId);
+    if (updateHistory) {
+      history.pushState({}, '', url);
+    }
+  }
+
   function hideCurrentView() {
     const activeView = document.querySelector('.active-view');
     if (activeView) {
@@ -171,6 +238,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (view) {
       view.classList.add('active-view');
       view.style.display = 'block';
+    } else if (viewId === 'register') {
+      RegistrationForm();
+    } else if (viewId === 'login') {
+      login(navigateTo);
     } else {
       console.error(`View with ID "${viewId}" not found`);
     }
@@ -192,28 +263,26 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   document.addEventListener('click', function (event) {
-    if (event.target.matches('[data-link="/views/register"]')) {
-      event.preventDefault(); // Prevent default link behavior
-      hideCurrentView();
-      showView('register'); // Show the 'register' view
+    if (event.target.matches('[data-link]')) {
+      event.preventDefault();
+      const link = event.target.getAttribute('data-link');
+      navigateTo(link);
     }
   });
 
-
-
-  function navigateTo(url) {
-        console.log('Navigating to', url);
-        history.pushState(null, null, url);
-        hideCurrentView();
-        showView(url);
-        // router();
+  document.addEventListener('click', function (event) {
+    if (event.target.matches('[data-link="/views/register"]')) {
+      event.preventDefault();
+      hideCurrentView();
+      showView('register');
     }
+  });
 
     function router() {
         console.log('Current path:', window.location.pathname);
         const routes = {
             '/views/login': () => login(navigateTo),
-            '/views/dashboard': dashboard,
+            '/views/dashboard': () => dashboard(),
             '/views/chat': chat,
             '/views/gameplay': gameplay,
             '/views/register' : RegistrationForm,
@@ -251,7 +320,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     router();
 });
-
 ===== ./views/chat.js =====
 function chat() {
 	document.getElementById('ft_transcendence').innerHTML = `
@@ -287,51 +355,58 @@ function chat() {
 ===== ./views/dashboard.js =====
 function dashboard() {
 	document.getElementById('ft_transcendence').innerHTML = `
-	<nav class="navbar navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Dashboard</a>
-		<span class="navbar-text">
-			Welcome, User | <a href="#" class="text-light" data-link="/views/login">Logout</a>
-		</span>
-	</nav>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-3 sidebar">
-				<h4>Friends</h4>
-				<ul class="list-group">
-					<li class="list-group-item">Friend 1</li>
-					<li class="list-group-item">Friend 2</li>
-					<li class="list-group-item">Friend 3</li>
-				</ul>
-			</div>
-			<div class="col-md-9 main-content">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">User Info</h5>
-						<p class="card-text">Details about the user</p>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Ranked Match</h5>
-						<button class="btn btn-primary">Start Queueing</button>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Leaderboard</h5>
-						<ul class="list-group">
-							<li class="list-group-item">Player 1</li>
-							<li class="list-group-item">Player 2</li>
-							<li class="list-group-item">Player 3</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+    <ul class="nav justify-content-center">
+		<a class="nav-link disabled">pong online</a>
+		<a class="nav-link disabled">$player_name</a>
+		<a class="nav-link" href="" id="logoutLink">Logout</a>
+	</ul>
+    <div class="container-fluid">
+    	<div class="row">
+        	<div class="col-md-3 sidebar">
+        	<h4>Friends</h4>
+        	<ul class="list-group">
+        	<li class="list-group-item">Friend 1</li>
+        	<li class="list-group-item">Friend 2</li>
+        	<li class="list-group-item">Friend 3</li>
+        	</ul>
+    	</div>
+    	<div class="col-md-9 main-content">
+        	<div class="card">
+        	<div class="card-body">
+            	<h5 class="card-title">User Info</h5>
+            	<p class="card-text">Details about the user</p>
+        	</div>
+        	</div>
+        	<div class="card">
+        	<div class="card-body">
+            	<h5 class="card-title">Ranked Match</h5>
+            	<button class="btn btn-primary">Start Queueing</button>
+        	</div>
+        	</div>
+        	<div class="card">
+        	<div class="card-body">
+            	<h5 class="card-title">Leaderboard</h5>
+            	<ul class="list-group">
+            	<li class="list-group-item">Player 1</li>
+            	<li class="list-group-item">Player 2</li>
+            	<li class="list-group-item">Player 3</li>
+            	</ul>
+        	</div>
+        	</div>
+    	</div>
+    	</div>
 	</div>
-	`;
+  `;
   }
 
+
+  //navigate to login page when logout is clicked
+  document.addEventListener('click', function (event) {
+	if (event.target.matches('.nav-logoutLink')) {
+	  event.preventDefault();
+	  navigateTo('login');
+	}
+  });
 ===== ./views/gameplay.js =====
 function gameplay() {
 	document.getElementById('ft_transcendence').innerHTML = `
@@ -352,9 +427,10 @@ function gameplay() {
   }
 
 ===== ./views/login.js =====
-function login(navigateTo) {
+function login() {
 	document.getElementById('ft_transcendence').innerHTML = `
 	<h1>ft_pong_online</h1>
+	<div id="alert-container"></div> <!-- Container for the alert -->
 	<div class="container login-container">
 		<form id="loginForm">
 			<p>
@@ -372,7 +448,7 @@ function login(navigateTo) {
 			</p>
 			<button type="submit" class="btn btn-primary btn-block">Login</button>
 			<div class="text-center">
-				<a href="#" data-link="/views/register">create account</a>
+				<a href="" data-link="" id="create">create account</a>
 			</div>
 		</form>
 	</div>
@@ -401,16 +477,29 @@ function login(navigateTo) {
 		
 		if (username === 'admin' && password === 'admin') {
 			console.log('Login successful');
-			navigateTo('/views/dashboard');
+			const event = new Event('loginSuccess');
+			document.dispatchEvent(event);
 		} else {
-			const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-			errorModal.show();
+			const alertContainer = document.getElementById('alert-container');
+			alertContainer.innerHTML = `
+			  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Invalid username or password
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			  </div>
+			`;
 		}
 	});
-  }
+
+	//navigate to create account page when create account is clicked
+    document.getElementById('create').addEventListener('click', function (event) {
+        event.preventDefault();
+        const event = new Event('createAccount');
+		document.dispatchEvent(event);
+    });
+}
 
 ===== ./views/unmask.js =====
-$(document).ready(function() {
+changeType.ready(function() {
   $('.unmask').on('click', function(){
     if($(this).prev('input').attr('type') == 'password')
       changeType($(this).prev('input'), 'text');
@@ -450,34 +539,54 @@ $(document).ready(function() {
 
 ===== ./views/register.js =====
 function RegistrationForm() {
-    document.getElementById('ft_transcendence').innerHTML = `
-      <h1>ft_pong_online - Register</h1>
-      <div class="container login-container">
-        <form id="registerForm">
-          <p>
-            <label for="username">username</label>
-            <input type="text" value="" placeholder="Enter Username" id="username">
-          </p>
-          <p>
-            <label for="password">password</label>
+  document.getElementById('ft_transcendence').innerHTML = `
+    <h1>Register</h1>
+    <div class="container login-container">
+      <form id="registerForm">
+        <p>
+          <label for="username">username</label>
+          <input type="text" value="" placeholder="Enter Username" id="username">
+        </p>
+        <p>
+          <label for="password">password</label>
+          <div class="password-wrapper">
             <input type="password" value="" placeholder="Enter Password" id="password" class="password">
-            <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
-          </p>
-          <p>
-            <label for="profile-photo">Upload profile photo:</label>
-            <input type="file" id="profile-photo">
-          </p>
-          <button type="submit" class="btn btn-primary btn-block">Register</button>
-        </form>
-      </div>
-    `;
+            <button class="unmask" type="button" title="Mask/Unmask password to check content">
+						  <i class="fas fa-lock"></i>
+					  </button>
+          </div>
+        </p>
+        <p>
+          <label for="profile-photo">Upload profile photo:</label>
+          <input type="file" id="profile-photo">
+        </p>
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+      </form>
+    </div>
+  `;
 
-    document.getElementById('registerForm').addEventListener('submit', function (event) {
-      event.preventDefault();
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('unmask') || event.target.closest('.unmask')) {
+      const button = event.target.closest('.unmask');
+      const input = button.previousElementSibling;
+      if (input.type === 'password') {
+        input.type = 'text';
+        button.querySelector('i').classList.remove('fa-lock');
+        button.querySelector('i').classList.add('fa-lock-open');
+      } else {
+        input.type = 'password';
+        button.querySelector('i').classList.remove('fa-lock-open');
+        button.querySelector('i').classList.add('fa-lock');
+      }
+    }
+  });
 
-      // create account and add to database
+  document.getElementById('registerForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-      alert('Account created successfully');
-      });
-  }
-  
+    // create account and add to database
+
+    alert('Account created successfully');
+    navigateTo('login');
+  });
+}

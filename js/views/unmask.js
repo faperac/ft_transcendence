@@ -1,4 +1,4 @@
-$(document).ready(function() {
+changeType.ready(function() {
   $('.unmask').on('click', function(){
     if($(this).prev('input').attr('type') == 'password')
       changeType($(this).prev('input'), 'text');

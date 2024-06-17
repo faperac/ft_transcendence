@@ -47,5 +47,6 @@ function RegistrationForm() {
     // create account and add to database
 
     alert('Account created successfully');
+    navigateTo('login');
   });
 }
