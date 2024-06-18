@@ -1,10 +1,14 @@
-function dashboard() {
+function dashboard(navigateTo, $player_name) {
 	document.getElementById('ft_transcendence').innerHTML = `
     <ul class="nav justify-content-center">
 		<a class="nav-link disabled">pong online</a>
-		<a class="nav-link disabled">$player_name</a>
+		<a class="nav-link disabled">${$player_name}</a>
 		<a class="nav-link" href="" id="logoutLink">Logout</a>
 	</ul>
+
+	<div class="text-center">
+		<img src="../../content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" style="width: 200px; height: 200px; " alt="Profile Picture">
+	</div>
     <div class="container-fluid">
     	<div class="row">
         	<div class="col-md-3 sidebar">
@@ -41,6 +45,9 @@ function dashboard() {
     	</div>
     	</div>
 	</div>
+	<footer class="py-3 my-4">
+		<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+	</footer>
   `;
   }
 
@@ -48,6 +55,7 @@ function dashboard() {
   document.addEventListener('click', function (event) {
 	if (event.target.matches('.nav-logoutLink')) {
 	  event.preventDefault();
+	  //disconnect user
 	  navigateTo('login');
 	}
   });

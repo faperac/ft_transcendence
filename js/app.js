@@ -25,9 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
       view.classList.add('active-view');
       view.style.display = 'block';
     } else if (viewId === 'register') {
-      RegistrationForm();
+      RegistrationForm(navigateTo);
     } else if (viewId === 'login') {
       login(navigateTo);
+    } else if (viewId === 'dashboard') {
+        dashboard(navigateTo, 'test');
     } else {
       console.error(`View with ID "${viewId}" not found`);
     }
@@ -68,14 +70,14 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Current path:', window.location.pathname);
         const routes = {
             '/views/login': () => login(navigateTo),
-            '/views/dashboard': () => dashboard(),
+            '/views/dashboard': () => dashboard(navigateTo),
             '/views/chat': chat,
             '/views/gameplay': gameplay,
             '/views/register' : RegistrationForm,
         };
 
         const path = window.location.pathname;
-        const route = routes[path] || login();
+        const route = routes[path] || login(navigateTo);
         route();
     }
 

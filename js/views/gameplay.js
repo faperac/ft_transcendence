@@ -13,5 +13,8 @@ function gameplay() {
 		  <button class="btn btn-danger">Exit</button>
 		</div>
 	  </div>
+	  <footer class="py-3 my-4">
+	  	<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+  		</footer>
 	`;
   }

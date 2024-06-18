@@ -71,7 +71,7 @@ label {
 }
 
 input[type="text"], input[type="password"] {
-	width: calc(100% - 20px);
+	width: calc(100%);
 	padding: 10px;
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
@@ -99,6 +99,12 @@ input[type="text"], input[type="password"] {
 	font-size: 16px;
 }
 
+
+.img-thumbnail {
+	width: 100%;
+	height: 100%;
+}
+
 /* button */
 .btn-primary {
 	background-color: #007bff;
@@ -118,12 +124,13 @@ input[type="text"], input[type="password"] {
 	width: 100%;
   }
   
-	.password-wrapper input[type="text"], 
-	.password-wrapper input[type="password"] {
+.password-wrapper input[type="text"], 
+.password-wrapper input[type="password"] {
+	width: calc(100% - 40px);
 	width: 100%;
 	padding-right: 40px;
 	box-sizing: border-box;
-  }
+}
   
 .password-wrapper .unmask {
 	position: absolute;
@@ -168,4 +175,22 @@ input[type="text"], input[type="password"] {
 	}
 }
 
+/* button register */
+#registerbutton, #registerbutton42{
+	margin-bottom: 10px;
+  }
 
+/* button back */
+/* #arrowbackregister { 
+	margin-bottom: 50px;
+   } */wrapper
+
+
+/* for user picture */
+.profile-picture {
+	width: 150px;
+	height: 150px;
+	/* border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid #fff; */
+}

@@ -1,4 +1,4 @@
-function RegistrationForm() {
+function RegistrationForm(navigateTo) {
   document.getElementById('ft_transcendence').innerHTML = `
     <h1>Register</h1>
     <div class="container login-container">
@@ -20,9 +20,16 @@ function RegistrationForm() {
           <label for="profile-photo">Upload profile photo:</label>
           <input type="file" id="profile-photo">
         </p>
-        <button type="submit" class="btn btn-primary btn-block">Register</button>
+        <button id ="registerbutton" type="submit" class="btn btn-primary btn-block">Register</button>
+        <button id ="registerbutton42"type="submit" class="btn btn-primary btn-block">Register with 42</button>
+        <button id ="arrowbackregister" class="btn btn-primary ">  
+          <i class="bi bi-arrow-left"></i>
+        </button>
       </form>
     </div>
+    <footer class="py-3 my-4">
+		  <p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+	  </footer>
   `;
 
   document.addEventListener('click', function (event) {
@@ -47,6 +54,11 @@ function RegistrationForm() {
     // create account and add to database
 
     alert('Account created successfully');
+    navigateTo('login');
+  });
+
+  document.getElementById('arrowbackregister').addEventListener('click', function (event) {
+    event.preventDefault();
     navigateTo('login');
   });
 }
