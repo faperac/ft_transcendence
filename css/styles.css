@@ -1,196 +1,223 @@
-/* for login and register page*/
-.login-register-page {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 90vh;
-	margin: 0;
-}
-
-.view {
-	display: none;
-	padding: 20px;
-}
-  
-.active-view {
-	display: block;
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #FFF9D0;
 }
 
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 90vh;
-	margin: 0;
-	font-family: Arial, sans-serif;
-	background-color: #FFF9D0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ft_transcendence {
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    width: 95%;
+    margin: 0;
+    padding: 0;
+}
+
+/* other existing styles */
+
+.login-register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 0;
+
+}
+
+.view {
+    display: none;
+    padding: 20px;
+}
+
+.active-view {
+    display: block;
 }
 
 h1 {
-	text-align: center;
-	margin-bottom: 70px;
-	font-weight: 900;
+    text-align: center;
+    margin-bottom: 70px;
+    font-weight: 900;
 }
 
 .login-container h1 {
-	display:flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	max-width: 400px;
-	padding: 50px;
-	background-color: #CAF4FF;
-	border-radius: 30px;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-	border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 50px;
+    background-color: #CAF4FF;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    border: 5px solid black;
 }
 
 form {
-	width: 100%;
+    width: 100%;
 }
 
 p {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 label {
-	display: block;
-	text-align: center;
-	margin-bottom: 5px;
-	width: 100%;
-	font-weight: 900;
-	box-sizing: border-box;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    width: 100%;
+    font-weight: 900;
+    box-sizing: border-box;
 }
 
 input[type="text"], input[type="password"] {
-	width: calc(100%);
-	padding: 10px;
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-	background-color: #5AB2FF;
-	border-radius: 30px;
-	border: 1px solid black;
+    width: calc(100%);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background-color: #5AB2FF;
+    border-radius: 30px;
+    border: 1px solid black;
 }
 
 .unmask {
-	margin-top: 10px;
-	padding: 10px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	cursor: pointer;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .btn {
-	width: 100%;
-	padding: 10px;
-	background-color: #007bff;
-	border: none;
-	border-radius: 30px;
-	color: #ffffff;
-	font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 30px;
+    color: #ffffff;
+    font-size: 16px;
 }
 
-
 .img-thumbnail {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 /* button */
 .btn-primary {
-	background-color: #007bff;
-	border: 3px solid black;
+    background-color: #007bff;
+    border: 3px solid black;
 }
 
 .btn-block {
-	display: block;
-	width: 100%;
+    display: block;
+    width: 100%;
 }
 
 /* for password visibility toggle */
 .password-wrapper {
-	position: relative;
-	display: flex;
-	align-items: center;
-	width: 100%;
-  }
-  
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
 .password-wrapper input[type="text"], 
 .password-wrapper input[type="password"] {
-	width: calc(100% - 40px);
-	width: 100%;
-	padding-right: 40px;
-	box-sizing: border-box;
+    width: calc(100% - 40px);
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
 }
-  
+
 .password-wrapper .unmask {
-	position: absolute;
-	right: 10px;
-	top: -15%;
-	background: none;
-	border: none;
-	cursor: pointer;
-	color: black;
-}
-  
-
-/* for dashboard.html */
-
-.dashboard-container {
-	display: grid;
-	grid-template-columns: 1fr;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	height: 100vh;
-	margin: 0;
-	padding: 0;
+    position: absolute;
+    right: 10px;
+    top: -15%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
 }
 
 .navbar {
-
-	color: #FFF9D0;
+    color: #FFF9D0;
 }
 
 .container-fluid {
-	padding-left: 0;
-	padding-right: 0;
-	width: 100%;
-  }
-
-/* for user-info */
-@media (max-width: 768px) {
-	.user-info {
-		width: 100%;
-		padding: 20px;
-	}
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
 }
 
-/* button register */
+@media (max-width: 768px) {
+    .user-info {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
 #registerbutton, #registerbutton42{
-	margin-bottom: 10px;
-  }
+    margin-bottom: 10px;
+}
 
-/* button back */
-/* #arrowbackregister { 
+#profile-picture {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin-bottom: 50px;
-   } */wrapper
+	margin-top: 50px;
 
-
-/* for user picture */
-.profile-picture {
-	width: 150px;
-	height: 150px;
-	/* border-radius: 50%;
+	margin-left:auto;
+    margin-right:auto;
 	object-fit: cover;
-	border: 2px solid #fff; */
+    width: 150px;
+    height: 150px;
+}
+
+.img-thumbnail {
+    width: 200px;
+    height: 200px;
+    /* object-fit: cover; */
+    border-radius: 50%;
+}
+
+#start_button {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#loginAlert {
+	/* display: none; */
+	margin-left: 300px;
+	margin-right: 300px;
+	border-radius: 30px;
+	text-align: center;
+	border: 2px solid black;
+}
+
+#title_dashboard {
+	display: flex;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
 }

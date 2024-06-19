@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
   </style>
@@ -16,11 +18,11 @@
 <body>
   <div id="ft_transcendence"></div>
   <body id="body">
-    <!-- ... -->
   </body>
 
-  <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/views/login.js"></script>
   <script src="js/views/register.js"></script>
@@ -28,13 +30,14 @@
   <script src="js/views/chat.js"></script>
   <script src="js/views/gameplay.js"></script>
   <script src="js/views/unmask.js"></script>
-
+  
   <main>
     <div id="/views/register" class="view" style="display: none;">Home content</div>
     <div id="about" class="view" style="display: none;">About content</div>
     <div id="contact" class="view" style="display: none;">Contact content</div>
   </main>
-
+  
+  
 </body>
 </html>
 
@@ -112,7 +115,7 @@ label {
 }
 
 input[type="text"], input[type="password"] {
-	width: calc(100% - 20px);
+	width: calc(100%);
 	padding: 10px;
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
@@ -140,6 +143,12 @@ input[type="text"], input[type="password"] {
 	font-size: 16px;
 }
 
+
+.img-thumbnail {
+	width: 100%;
+	height: 100%;
+}
+
 /* button */
 .btn-primary {
 	background-color: #007bff;
@@ -159,12 +168,13 @@ input[type="text"], input[type="password"] {
 	width: 100%;
   }
   
-	.password-wrapper input[type="text"], 
-	.password-wrapper input[type="password"] {
+.password-wrapper input[type="text"], 
+.password-wrapper input[type="password"] {
+	width: calc(100% - 40px);
 	width: 100%;
 	padding-right: 40px;
 	box-sizing: border-box;
-  }
+}
   
 .password-wrapper .unmask {
 	position: absolute;
@@ -209,8 +219,25 @@ input[type="text"], input[type="password"] {
 	}
 }
 
+/* button register */
+#registerbutton, #registerbutton42{
+	margin-bottom: 10px;
+  }
+
+/* button back */
+/* #arrowbackregister { 
+	margin-bottom: 50px;
+   } */wrapper
 
 
+/* for user picture */
+.profile-picture {
+	width: 150px;
+	height: 150px;
+	/* border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid #fff; */
+}
 ===== ./app.js =====
 document.addEventListener('DOMContentLoaded', function () { 
   
@@ -239,9 +266,11 @@ document.addEventListener('DOMContentLoaded', function () {
       view.classList.add('active-view');
       view.style.display = 'block';
     } else if (viewId === 'register') {
-      RegistrationForm();
+      RegistrationForm(navigateTo);
     } else if (viewId === 'login') {
       login(navigateTo);
+    } else if (viewId === 'dashboard') {
+        dashboard(navigateTo, 'test');
     } else {
       console.error(`View with ID "${viewId}" not found`);
     }
@@ -282,14 +311,14 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Current path:', window.location.pathname);
         const routes = {
             '/views/login': () => login(navigateTo),
-            '/views/dashboard': () => dashboard(),
+            '/views/dashboard': () => dashboard(navigateTo),
             '/views/chat': chat,
             '/views/gameplay': gameplay,
             '/views/register' : RegistrationForm,
         };
 
         const path = window.location.pathname;
-        const route = routes[path] || login();
+        const route = routes[path] || login(navigateTo);
         route();
     }
 
@@ -353,13 +382,17 @@ function chat() {
   }
 
 ===== ./views/dashboard.js =====
-function dashboard() {
+function dashboard(navigateTo, $player_name) {
 	document.getElementById('ft_transcendence').innerHTML = `
     <ul class="nav justify-content-center">
 		<a class="nav-link disabled">pong online</a>
-		<a class="nav-link disabled">$player_name</a>
+		<a class="nav-link disabled">${$player_name}</a>
 		<a class="nav-link" href="" id="logoutLink">Logout</a>
 	</ul>
+
+	<div class="text-center">
+		<img src="../../content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" style="width: 200px; height: 200px; " alt="Profile Picture">
+	</div>
     <div class="container-fluid">
     	<div class="row">
         	<div class="col-md-3 sidebar">
@@ -396,6 +429,9 @@ function dashboard() {
     	</div>
     	</div>
 	</div>
+	<footer class="py-3 my-4">
+		<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+	</footer>
   `;
   }
 
@@ -403,6 +439,7 @@ function dashboard() {
   document.addEventListener('click', function (event) {
 	if (event.target.matches('.nav-logoutLink')) {
 	  event.preventDefault();
+	  //disconnect user
 	  navigateTo('login');
 	}
   });
@@ -422,139 +459,82 @@ function gameplay() {
 		  <button class="btn btn-danger">Exit</button>
 		</div>
 	  </div>
+	  <footer class="py-3 my-4">
+	  	<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+  		</footer>
 	`;
   }
 
 ===== ./views/login.js =====
-// function login() {
-// 	document.getElementById('ft_transcendence').innerHTML = `
-// 	<h1>ft_pong_online</h1>
-// 	<div id="alert-container"></div> <!-- Container for the alert -->
-// 	<div class="container login-container">
-// 		<form id="loginForm">
-// 			<p>
-// 				<label for="username">username</label>
-// 				<input type="text" value="" placeholder="Enter Username" id="username">
-// 			</p>
-// 			<p>
-// 				<label for="password">password</label>
-// 				<div class="password-wrapper">
-// 					<input type="password" value="" placeholder="Enter Password" id="password" class="password">
-// 					<button class="unmask" type="button" title="Mask/Unmask password to check content">
-// 						<i class="fas fa-lock"></i>
-// 					</button>
-// 				</div>
-// 			</p>
-// 			<button type="submit" class="btn btn-primary btn-block">Login</button>
-// 			<div class="text-center">
-// 				<a href="" data-link="" id="create">create account</a>
-// 			</div>
-// 		</form>
-// 	</div>
-// 	<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-// 		<div class="modal-dialog">
-// 			<div class="modal-content">
-// 				<div class="modal-header">
-// 					<h5 class="modal-title" id="errorModalLabel">Login Error</h5>
-// 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-// 				</div>
-// 				<div class="modal-body">
-// 					Invalid username or password
-// 				</div>
-// 				<div class="modal-footer">
-// 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	</div>
-// 	`;
-
-// 	document.getElementById('loginForm').addEventListener('submit', function (event) {
-// 		event.preventDefault();
-// 		const username = document.getElementById('username').value;
-// 		const password = document.getElementById('password').value;
-		
-// 		if (username === 'admin' && password === 'admin') {
-// 			console.log('Login successful');
-// 			const event = new Event('loginSuccess');
-// 			document.dispatchEvent(event);
-// 		} else {
-// 			const alertContainer = document.getElementById('alert-container');
-// 			alertContainer.innerHTML = `
-// 			  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-// 				Invalid username or password
-// 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-// 			  </div>
-// 			`;
-// 		}
-// 	});
-
-// 	//navigate to create account page when create account is clicked
-//     document.getElementById('create').addEventListener('click', function (event) {
-//         event.preventDefault();
-//         const event = new Event('createAccount');
-// 		document.dispatchEvent(event);
-//     });
-// }
-
-
 function login(navigateTo) {
 	document.getElementById('ft_transcendence').innerHTML = `
 	<h1>ft_pong_online</h1>
-	<div id="alert-container"></div> <!-- Container for the alert -->
+    	<div id="loginAlert" class="alert alert-danger d-none" role="alert">
+      	Invalid username or password!
+    	</div>
 	<div class="container login-container">
-		<form id="loginForm">
-			<p>
-				<label for="username">username</label>
-				<input type="text" value="" placeholder="Enter Username" id="username">
-			</p>
-			<p>
-				<label for="password">password</label>
-				<div class="password-wrapper">
-					<input type="password" value="" placeholder="Enter Password" id="password" class="password">
-					<button class="unmask" type="button" title="Mask/Unmask password to check content">
-						<i class="fas fa-lock"></i>
-					</button>
-				</div>
-			</p>
-			<button type="submit" class="btn btn-primary btn-block">Login</button>
-			<div class="text-center">
-				<a href="#" data-link="/views/register">create account</a>
-			</div>
-		</form>
+	  <form id="loginForm">
+		<p>
+		  <label for="username">username</label>
+		  <input type="text" value="" placeholder="Enter Username" id="username">
+		</p>
+		<p>
+		  <label for="password">password</label>
+		  <div class="password-wrapper">
+			<input type="password" value="" placeholder="Enter Password" id="password" class="password">
+			<button class="unmask" type="button" title="Mask/Unmask password to check content">
+			  <i class="fas fa-lock"></i>
+			</button>
+		  </div>
+		</p>
+		<button type="submit" class="btn btn-primary btn-block">Login</button>
+		<div class="text-center">
+		  <a href="" data-link="/views/register">create account</a>
+		</div>
+	  </form>
 	</div>
 	<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="errorModalLabel">Login Error</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					Invalid username or password
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				</div>
-			</div>
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="errorModalLabel">Login Error</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  </div>
+		  <div class="modal-body">
+			Invalid username or password
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  </div>
 		</div>
+	  </div>
 	</div>
+	<footer class="py-3 my-4">
+		<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+	</footer>
 	`;
-
+  
+	/* navigate to dashboard page when login is successful */
 	document.getElementById('loginForm').addEventListener('submit', function (event) {
-		event.preventDefault();
-		const username = document.getElementById('username').value;
-		const password = document.getElementById('password').value;
-		
-		if (username === 'admin' && password === 'admin') {
-			console.log('Login successful');
-			navigateTo('/views/dashboard');
-		} else {
-			const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-			errorModal.show();
-		}
+	  event.preventDefault();
+	  const username = document.getElementById('username').value;
+	  const password = document.getElementById('password').value;
+  
+	  if (username === '' && password === '') {
+		console.log('Login successful');
+		navigateTo('dashboard', username);
+	  } else {
+		const loginAlert = document.getElementById('loginAlert');
+		loginAlert.classList.remove('d-none');
+	  }
 	});
-}
+  
+	/* navigate to create account page when create account is clicked */
+	document.getElementById('create').addEventListener('click', function (event) {
+	  event.preventDefault();
+	  navigateTo('/views/register');
+	});
+  }
 ===== ./views/unmask.js =====
 changeType.ready(function() {
   $('.unmask').on('click', function(){
@@ -595,7 +575,7 @@ changeType.ready(function() {
 });
 
 ===== ./views/register.js =====
-function RegistrationForm() {
+function RegistrationForm(navigateTo) {
   document.getElementById('ft_transcendence').innerHTML = `
     <h1>Register</h1>
     <div class="container login-container">
@@ -617,9 +597,16 @@ function RegistrationForm() {
           <label for="profile-photo">Upload profile photo:</label>
           <input type="file" id="profile-photo">
         </p>
-        <button type="submit" class="btn btn-primary btn-block">Register</button>
+        <button id ="registerbutton" type="submit" class="btn btn-primary btn-block">Register</button>
+        <button id ="registerbutton42"type="submit" class="btn btn-primary btn-block">Register with 42</button>
+        <button id ="arrowbackregister" class="btn btn-primary ">  
+          <i class="bi bi-arrow-left"></i>
+        </button>
       </form>
     </div>
+    <footer class="py-3 my-4">
+		  <p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+	  </footer>
   `;
 
   document.addEventListener('click', function (event) {
@@ -644,6 +631,11 @@ function RegistrationForm() {
     // create account and add to database
 
     alert('Account created successfully');
+    navigateTo('login');
+  });
+
+  document.getElementById('arrowbackregister').addEventListener('click', function (event) {
+    event.preventDefault();
     navigateTo('login');
   });
 }

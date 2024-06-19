@@ -66,4 +66,5 @@ function login(navigateTo) {
 	  event.preventDefault();
 	  navigateTo('/views/register');
 	});
+
   }
