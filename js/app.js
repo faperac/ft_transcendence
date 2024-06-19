@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
       login(navigateTo);
     } else if (viewId === 'dashboard') {
         dashboard(navigateTo, 'test');
+    } else if (viewId === 'gameplay'){
+        gameplay(navigateTo);
     } else {
       console.error(`View with ID "${viewId}" not found`);
     }

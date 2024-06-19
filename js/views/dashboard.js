@@ -22,14 +22,17 @@ function dashboard(navigateTo, $player_name) {
 				<div class="col-md-9 main-content">
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title">User Info</h5>
-							<p class="card-text">Details about the user</p>
+							<h5 class="card-title">${$player_name}</h5>
+							<p class="card-text">Details about ${$player_name}</p>
 						</div>
 					</div>
 					<div class="card">
 						<div class="card-body">
-							<h5 id="title_dashboard" class="card-title">Ranked Match</h5>
-							<button id="start_button" class="btn btn-primary">Start</button>
+							<div class="btn-group" id="play_button" "role="group" aria-label="Basic example">
+								<button type="button" class="btn btn-primary">Play</button>
+								<button type="button" class="btn btn-primary">Play with friend</button>
+								<button type="button" class="btn btn-primary">Play tournament</button>
+						  	</div>
 						</div>
 					</div>
 					<div class="card">
@@ -60,6 +63,12 @@ function attachEventHandlers(navigateTo) {
 		// Disconnect user
 		console.log('Logout successful');
 		navigateTo('login');
+	});
+
+	document.getElementById('play_button').addEventListener('click', function (event) {
+		event.preventDefault();
+		console.log('Play button clicked');
+		navigateTo('gameplay');
 	});
 	
 	// Add loading frame to Start button
