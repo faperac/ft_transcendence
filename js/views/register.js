@@ -17,8 +17,10 @@ function RegistrationForm(navigateTo) {
           </div>
         </p>
         <p>
-          <label for="profile-photo">Upload profile photo:</label>
-          <input type="file" id="profile-photo">
+          <label for="profile-photo">Choose profil picture</label>
+          <div class="text-center" id=chose_pp>
+            <img src="../../content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" style="width: 200px; height: 200px; " alt="Profile Picture">
+          </div>
         </p>
         <button id ="registerbutton" type="submit" class="btn btn-primary btn-block">Register</button>
         <button id ="registerbutton42"type="submit" class="btn btn-primary btn-block">Register with 42</button>

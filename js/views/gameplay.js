@@ -1,4 +1,4 @@
-function gameplay() {
+function gameplay(navigateTo) {
 	document.getElementById('ft_transcendence').innerHTML = `
 	  <div class="container game-container">
 		<div class="game-area">
@@ -17,4 +17,15 @@ function gameplay() {
 	  	<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
   		</footer>
 	`;
+
+	attachEventHandlers2(navigateTo);
+  }
+
+  function attachEventHandlers2(navigateTo) {
+	//Navigate to dashboard is exit is clicked
+	document.querySelector('.btn-danger').addEventListener('click', function (event) {
+		event.preventDefault();
+		console.log('Exit button clicked');
+		navigateTo('dashboard');
+	});
   }

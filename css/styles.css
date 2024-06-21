@@ -6,7 +6,8 @@ html, body {
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between; /* Pousse le footer en bas */
     align-items: center;
 }
 
@@ -18,7 +19,7 @@ body {
 .dashboard-container {
     display: flex;
     flex-direction: column;
-    height: 95vh;
+    flex: 1; /* Permet à cet élément de prendre tout l'espace disponible */
     width: 95%;
     margin: 0;
     padding: 0;
@@ -32,7 +33,6 @@ body {
     align-items: center;
     height: 90vh;
     margin: 0;
-
 }
 
 .view {
@@ -46,7 +46,8 @@ body {
 
 h1 {
     text-align: center;
-    margin-bottom: 70px;
+    margin-bottom: 7%;
+    margin-top: 7%;
     font-weight: 900;
 }
 
@@ -128,6 +129,11 @@ input[type="text"], input[type="password"] {
     border: 3px solid black;
 }
 
+.btn-danger {
+    background-color: #FF0000;
+    border: 3px solid black;
+}
+
 .btn-block {
     display: block;
     width: 100%;
@@ -189,9 +195,9 @@ input[type="text"], input[type="password"] {
 
 	margin-left:auto;
     margin-right:auto;
-	object-fit: cover;
-    width: 150px;
-    height: 150px;
+	/* object-fit: cover; */
+    /* width: 150px; */
+    /* height: 150px; */
 }
 
 .img-thumbnail {
@@ -220,4 +226,33 @@ input[type="text"], input[type="password"] {
 	justify-content: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#play_button {
+	display: flex;
+}
+
+/* footer */
+footer {
+    text-align: center;
+    width: 100%;
+}
+
+#friends {
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin-left: 5%;
+}
+
+/* liltle image picture for chose pp on register page*/
+#chose_pp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : auto;
+    height : auto;
+    max-width : 200px;
+    max-height : 150px;
+
 }

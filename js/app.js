@@ -18,20 +18,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  const viewActions = {
+    register: (navigateTo) => RegistrationForm(navigateTo),
+    login: (navigateTo) => login(navigateTo),
+    dashboard: (navigateTo) => dashboard(navigateTo, 'test'),
+    gameplay: (navigateTo) => gameplay(navigateTo)
+  };
+  
+
   function showView(viewId) {
     const view = document.getElementById(viewId);
 
     if (view) {
       view.classList.add('active-view');
       view.style.display = 'block';
-    } else if (viewId === 'register') {
-      RegistrationForm(navigateTo);
-    } else if (viewId === 'login') {
-      login(navigateTo);
-    } else if (viewId === 'dashboard') {
-        dashboard(navigateTo, 'test');
-    } else if (viewId === 'gameplay'){
-        gameplay(navigateTo);
+    } else if (viewActions[viewId]) {
+      viewActions[viewId](navigateTo);
     } else {
       console.error(`View with ID "${viewId}" not found`);
     }

@@ -13,7 +13,7 @@ function dashboard(navigateTo, $player_name) {
 			<div class="row">
 				<div class="col-md-3 sidebar">
 					<h4 id="title_dashboard">Friends</h4>
-					<ul class="list-group">
+					<ul id="friends" class="list-group">
 						<li class="list-group-item">Friend1</li>
 						<li class="list-group-item">Friend2</li>
 						<li class="list-group-item">Friend3</li>
