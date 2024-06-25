@@ -1,6 +1,11 @@
-function gameplay(navigateTo) {
+function gameplay(navigateTo, $player_name) {
 	document.getElementById('ft_transcendence').innerHTML = `
-	  <div class="container game-container">
+	<ul class="nav navbar-expand-lg justify-content-center">
+		<a class="nav-link disabled">pongonline</a>
+		<a class="nav-link disabled">${$player_name}</a>
+		<a class="nav-link" href="" id="logoutLink">Logout</a>
+	</ul>
+	<div class="container game-container">
 		<div class="game-area">
 		  <!-- Your game logic here (canvas, etc.) -->
 		</div>
@@ -29,3 +34,4 @@ function gameplay(navigateTo) {
 		navigateTo('dashboard');
 	});
   }
+

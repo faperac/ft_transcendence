@@ -6,6 +6,9 @@ function dashboard(navigateTo, $player_name) {
 			<a class="nav-link disabled">${$player_name}</a>
 			<a class="nav-link" href="" id="logoutLink">Logout</a>
 		</ul>
+		<h3 id ="header-dashboard"class="text-center">
+			${$player_name}'s Dashboard
+		</h3>
 		<div class="text-center" id=profile-picture>
 			<img src="../../content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" style="width: 200px; height: 200px; " alt="Profile Picture">
 		</div>
@@ -53,10 +56,10 @@ function dashboard(navigateTo, $player_name) {
 		</footer>
 	</div>`;
 
-	attachEventHandlers(navigateTo);
+	attachEventHandlers(navigateTo, $player_name);
   }
 
-function attachEventHandlers(navigateTo) {
+function attachEventHandlers(navigateTo, $player_name) {
 	// Navigate to login page when logout is clicked
 	document.getElementById('logoutLink').addEventListener('click', function (event) {
 		event.preventDefault();
@@ -68,17 +71,9 @@ function attachEventHandlers(navigateTo) {
 	document.getElementById('play_button').addEventListener('click', function (event) {
 		event.preventDefault();
 		console.log('Play button clicked');
-		navigateTo('gameplay');
+		navigateTo('gameplay', $player_name);
 	});
 	
-	// Add loading frame to Start button
-	$('#start_button').on('click', function() {
-		var $this = $(this);
-		$this.prop('disabled', true).text('Loading...');
-		setTimeout(function() {
-			$this.prop('disabled', false).text('Start');
-		}, 8000);
-	});
 }
 
 // Initial call to attachEventHandlers in case the elements are already present

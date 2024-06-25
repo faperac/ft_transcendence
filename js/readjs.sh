@@ -10,7 +10,8 @@ output_file="file"
 append_file_contents() {
     local file_path="$1"
     echo "===== $file_path =====" >> "$output_file"
-    cat "$file_path" >> "$output_file"
+    # cat "$file_path" >> "$output_file"
+    tr -d '\n \t' < "$file_path" >> "$output_file"
     echo "" >> "$output_file" # Add a newline for readability
 }
 
