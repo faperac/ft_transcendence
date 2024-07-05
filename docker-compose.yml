@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    build: .
+    container_name: ft_transcendence_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: database
+      POSTGRES_USER: fab
+      POSTGRES_PASSWORD: pass
+    volumes:
+      - pgdata:/home/fabperei/42cursus/ft_transcendence/vol
+
+volumes:
+  pgdata:
+
