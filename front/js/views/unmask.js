@@ -9,9 +9,9 @@ changeType.ready(function() {
 
   function changeType(x, type) {
     if(x.type == type)
-      return x; //That was easy.
+      return x;
     try {
-      return x.type = type; //Stupid IE security will not allow this
+      return x.type = type;
     } catch(e) {
       var html = $("<div>").append(x.clone()).html();
       var regex = /type=(\")?([^\"\s]+)(\")?/;
