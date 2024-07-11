@@ -1,4 +1,4 @@
-function chat() {
+function chat(naviagateTo, $player_name, friend_name) {
 	document.getElementById('ft_transcendence').innerHTML = `
 	  <div class="container-fluid chat-container">
 		<div class="row">
@@ -23,8 +23,19 @@ function chat() {
 			  <input type="text" class="form-control" placeholder="Type a message...">
 			  <button class="btn btn-primary">Send</button>
 			</div>
+			<button id="backToDashboard" class="btn btn-primary">Back to Dashboard</button>
 		  </div>
 		</div>
 	  </div>
 	`;
-  }
+	attachEventHandlers2(navigateTo);
+}
+
+function attachEventHandlers2(navigateTo) {
+	//Navigate to dashboard is backToDashboard is clicked
+	document.getElementById('backToDashboard').addEventListener('click', function (event) {
+		event.preventDefault();
+		console.log('Back to dashboard');
+		navigateTo('dashboard');
+  });
+}

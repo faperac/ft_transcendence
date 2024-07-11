@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
     register: (navigateTo) => RegistrationForm(navigateTo),
     login: (navigateTo) => login(navigateTo),
     dashboard: (navigateTo) => dashboard(navigateTo),
-    gameplay: (navigateTo) => gameplay(navigateTo)
+    gameplay: (navigateTo) => gameplay(navigateTo),
+    chat: (navigateTo) => chat(navigateTo, 'Player 1', 'Friend 1')
   };
   
 
@@ -73,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function router() {
         console.log('Current path:', window.location.pathname);
         const routes = {
-            '/views/login': () => login(navigateTo),
-            '/views/dashboard': () => dashboard(navigateTo),
-            '/views/chat': chat,
-            '/views/gameplay': gameplay,
-            '/views/register' : RegistrationForm,
+          '/views/login': () => login(navigateTo),
+          '/views/dashboard': () => dashboard(navigateTo),
+          '/views/chat': () => chat(navigateTo, 'PlayerName', 'FriendName'),
+          '/views/gameplay': () => gameplay(navigateTo),
+          '/views/register': () => RegistrationForm(navigateTo)
         };
 
         const path = window.location.pathname;
