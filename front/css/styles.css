@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    background-color: #FFF9D0;
+    background-color: #e3d6c1;
 }
 
 body {
@@ -46,16 +46,18 @@ body {
 
 h1 {
     text-align: center;
-    margin-bottom: 7%;
-    margin-top: 7%;
+    /* margin-bottom: 7%; */
+    margin-top: 2%;
     font-weight: 900;
+    /* margin-bottom: 220px; */
 }
 
 .login-container h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    max-width: 150%;
+    max-height: 150%;
 }
 
 .container {
@@ -65,7 +67,7 @@ h1 {
     align-items: center;
     width: 100%;
     padding: 50px;
-    background-color: #CAF4FF;
+    background-color: #307f3d;
     border-radius: 30px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     border: 5px solid black;
@@ -93,7 +95,7 @@ input[type="text"], input[type="password"] {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    background-color: #5AB2FF;
+    background-color: #307f3d;
     border-radius: 30px;
     border: 1px solid black;
 }
@@ -110,7 +112,7 @@ input[type="text"], input[type="password"] {
 .btn {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #307f3d;
     border: none;
     border-radius: 30px;
     color: #ffffff;
@@ -124,12 +126,17 @@ input[type="text"], input[type="password"] {
 
 /* button */
 .btn-primary {
-    background-color: #007bff;
+    background-color: #307f3d;
+    border: 3px solid black;
+}
+
+.btn-primary:hover {
+    background-color: #e3d6c1;
     border: 3px solid black;
 }
 
 .btn-danger {
-    background-color: #FF0000;
+    background-color: red;
     border: 3px solid black;
 }
 
@@ -137,6 +144,10 @@ input[type="text"], input[type="password"] {
     display: block;
     width: 100%;
 }
+
+input::placeholder {
+    color: #e3d6c1;
+  }
 
 /* for password visibility toggle */
 .password-wrapper {
@@ -165,7 +176,7 @@ input[type="text"], input[type="password"] {
 }
 
 .navbar {
-    color: #FFF9D0;
+    color: #307f3d;
     /* mettre en haut de la page */
     position: fixed;
     /* top: 0;
@@ -224,6 +235,7 @@ input[type="text"], input[type="password"] {
 	/* display: none; */
 	margin-left: 300px;
 	margin-right: 300px;
+    margin-bottom: 150px;
 	border-radius: 30px;
 	text-align: center;
 	border: 2px solid black;

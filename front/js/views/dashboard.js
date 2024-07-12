@@ -2,6 +2,8 @@ function dashboard(navigateTo, $player_name) {
 	document.getElementById('ft_transcendence').innerHTML = `
 	<div class="dashboard-container">
 		<ul class="nav justify-content-center">
+			<a class="navbar-brand" href"#">
+			<img src="content/logo2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
 			<a class="nav-link disabled">pongonline</a>
 			<a class="nav-link disabled">${$player_name}</a>
 			<a class="nav-link" href="" id="logoutLink">Logout</a>
@@ -10,7 +12,7 @@ function dashboard(navigateTo, $player_name) {
 			${$player_name}'s Dashboard
 		</h3>
 		<div class="text-center" id=profile-picture>
-			<img src="content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" style="width: 200px; height: 200px; " alt="Profile Picture">
+			<img src="content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" alt="Profile Picture">
 		</div>
 		<div class="container-fluid">
 			<div class="row">
@@ -30,7 +32,7 @@ function dashboard(navigateTo, $player_name) {
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">${$player_name}</h5>
-							<p class="card-text">Details about ${$player_name}</p>
+							<p class="card-text">Here i put data from the game ; game win ; game lose ; niveau de l'ia la plus eleve gagne; etcc  ${$player_name}</p>
 						</div>
 					</div>
 					<div class="card">
@@ -113,7 +115,7 @@ function attachEventHandlers3(navigateTo, $player_name) {
         event.preventDefault();
         const friendName = document.getElementById('friendDropdown').getAttribute('data-friend');
         console.log(`Send message to ${friendName}`);
-        chat(naviagateTo, $player_name, friendName);
+        chat(navigateTo, $player_name, friendName);
     });
 
     document.getElementById('startGame').addEventListener('click', function (event) {

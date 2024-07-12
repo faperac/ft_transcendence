@@ -1,4 +1,4 @@
-function RegistrationForm(navigateTo) {
+function register(navigateTo) {
   document.getElementById('ft_transcendence').innerHTML = `
     <h1>Register</h1>
     <div class="container login-container">

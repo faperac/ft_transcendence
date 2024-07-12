@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const viewActions = {
-    register: (navigateTo) => RegistrationForm(navigateTo),
+    register: (navigateTo) => register(navigateTo),
     login: (navigateTo) => login(navigateTo),
     dashboard: (navigateTo, ...args) => dashboard(navigateTo, ...args),
     gameplay: (navigateTo, ...args) => gameplay(navigateTo, ...args),
