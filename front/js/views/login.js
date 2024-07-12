@@ -45,10 +45,10 @@ function login(navigateTo) {
 		<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
 	</footer>
 	`;
-	attachEventHandlers2(navigateTo);
+	attachEventHandlers(navigateTo);
 }
 
-function attachEventHandlers2(navigateTo) {
+function attachEventHandlers(navigateTo) {
 	/* navigate to dashboard page when login is successful */
 	document.getElementById('loginForm').addEventListener('submit', function (event) {
 	  event.preventDefault();
@@ -66,10 +66,14 @@ function attachEventHandlers2(navigateTo) {
 	});
 
 	/* navigate to create account page when create account is clicked */
-	document.getElementById('create').addEventListener('click', function (event) {
-	  event.preventDefault();
-	  navigateTo('/views/register');
-	});
+	const createButton = document.getElementById('create');
+	if (createButton) {
+		createButton.addEventListener('click', function (event) {
+			event.preventDefault();
+			console.log('click to create account button');
+			navigateTo('register');
+		});
+	}
 
 	/* lock button */
 	document.addEventListener('click', function (event) {

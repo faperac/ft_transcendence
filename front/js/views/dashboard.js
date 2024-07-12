@@ -60,10 +60,10 @@ function dashboard(navigateTo, $player_name) {
 		</footer>
 	</div>`;
 
-	attachEventHandlers(navigateTo, $player_name);
+	attachEventHandlers3(navigateTo, $player_name);
   }
 
-function attachEventHandlers(navigateTo, $player_name) {
+function attachEventHandlers3(navigateTo, $player_name) {
     // Navigate to login page when logout is clicked
     document.getElementById('logoutLink').addEventListener('click', function (event) {
         event.preventDefault();
@@ -97,7 +97,10 @@ function attachEventHandlers(navigateTo, $player_name) {
 
     // Hide the dropdown menu when clicking outside of it
     document.addEventListener('click', function () {
-        document.getElementById('friendDropdown').style.display = 'none';
+		const dropdown = document.getElementById('friendDropdown');
+		if (dropdown) {
+			dropdown.style.display = 'none';
+		}
     });
 
     // Prevent the dropdown menu from closing when clicking inside it
@@ -110,7 +113,7 @@ function attachEventHandlers(navigateTo, $player_name) {
         event.preventDefault();
         const friendName = document.getElementById('friendDropdown').getAttribute('data-friend');
         console.log(`Send message to ${friendName}`);
-        chat($player_name, friendName);
+        chat(naviagateTo, $player_name, friendName);
     });
 
     document.getElementById('startGame').addEventListener('click', function (event) {
@@ -120,8 +123,3 @@ function attachEventHandlers(navigateTo, $player_name) {
         // Add your logic here to start a game
     });
 }
-
-// Initial call to attachEventHandlers in case the elements are already present
-$(document).ready(function() {
-    attachEventHandlers();
-});

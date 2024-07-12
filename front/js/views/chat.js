@@ -32,10 +32,10 @@ function chat(naviagateTo, $player_name, friend_name) {
 		</div>
 	  </div>
 	`;
-	attachEventHandlers2(navigateTo);
+	attachEventHandlers5(navigateTo);
 }
 
-function attachEventHandlers2(navigateTo) {
+function attachEventHandlers5(navigateTo) {
 	//Navigate to dashboard is backToDashboard is clicked
 	document.getElementById('backToDashboard').addEventListener('click', function (event) {
 		event.preventDefault();
