@@ -2,14 +2,18 @@ function chat(naviagateTo, $player_name, friend_name) {
 	document.getElementById('ft_transcendence').innerHTML = `
 	  <div class="container-fluid chat-container">
 		<div class="row">
-		  <div class="col-md-3 friends-list">
-			<h4>Friends</h4>
-			<ul class="list-group">
-			  <li class="list-group-item">Friend 1</li>
-			  <li class="list-group-item">Friend 2</li>
-			  <li class="list-group-item">Friend 3</li>
+		<div class="col-md-3 sidebar">
+			<h4 id="title_dashboard">Friends</h4>
+			<ul id="friends" class="list-group">
+				<li class="list-group-item" data-friend="Friend1">Friend1</li>
+				<li class="list-group-item" data-friend="Friend2">Friend2</li>
+				<li class="list-group-item" data-friend="Friend3">Friend3</li>
 			</ul>
-		  </div>
+			<div id="friendDropdown" class="dropdown-menu" style="display: none;">
+				<a class="dropdown-item" href="#" id="sendMessage">Send Private Message</a>
+				<a class="dropdown-item" href="#" id="startGame">Start a Game</a>
+			</div>
+		</div>
 		  <div class="col-md-9 chat-window">
 			<div class="messages">
 			  <div class="message">

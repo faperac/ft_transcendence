@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () { 
-  
+document.addEventListener('DOMContentLoaded', function () {
+
   function navigateTo(url, updateHistory = true) {
     console.log('Navigating to', url);
     const viewId = url.startsWith('/') ? url.slice(1) : url;
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
     login: (navigateTo) => login(navigateTo),
     dashboard: (navigateTo) => dashboard(navigateTo),
     gameplay: (navigateTo) => gameplay(navigateTo),
-    chat: (navigateTo) => chat(navigateTo, 'Player 1', 'Friend 1')
+    chat: (navigateTo, playerName, friendName) => chat(navigateTo, playerName, friendName)
   };
-  
+
 
   function showView(viewId) {
     const view = document.getElementById(viewId);
@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
   if (initialHash) {
     const viewId = initialHash.slice(1);
     showView(viewId);
+  } else {  // Show login view on initial load (no hash)
+    showView('login');
   }
 
   document.addEventListener('click', function (event) {
@@ -63,53 +65,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  document.addEventListener('click', function (event) {
-    if (event.target.matches('[data-link="/views/register"]')) {
-      event.preventDefault();
-      hideCurrentView();
-      showView('register');
-    }
-  });
-
-    function router() {
-        console.log('Current path:', window.location.pathname);
-        const routes = {
-          '/views/login': () => login(navigateTo),
-          '/views/dashboard': () => dashboard(navigateTo),
-          '/views/chat': () => chat(navigateTo, 'PlayerName', 'FriendName'),
-          '/views/gameplay': () => gameplay(navigateTo),
-          '/views/register': () => RegistrationForm(navigateTo)
-        };
-
-        const path = window.location.pathname;
-        const route = routes[path] || login(navigateTo);
-        route();
-    }
-
-    window.addEventListener('popstate', router);
-
-    document.addEventListener('click', function (event) {
-        if (event.target.matches('[data-link]')) {
-            event.preventDefault();
-            navigateTo(event.target.getAttribute('data-link'));
-        }
-    });
-
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('unmask') || event.target.closest('.unmask')) {
-          const button = event.target.closest('.unmask');
-          const input = button.previousElementSibling;
-          if (input.type === 'password') {
-            input.type = 'text';
-            button.querySelector('i').classList.remove('fa-lock');
-            button.querySelector('i').classList.add('fa-lock-open');
-          } else {
-            input.type = 'password';
-            button.querySelector('i').classList.remove('fa-lock-open');
-            button.querySelector('i').classList.add('fa-lock');
-          }
-        }
-      });
-
-    router();
 });

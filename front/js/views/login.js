@@ -45,13 +45,17 @@ function login(navigateTo) {
 		<p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
 	</footer>
 	`;
-  
+	attachEventHandlers2(navigateTo);
+}
+
+function attachEventHandlers2(navigateTo) {
 	/* navigate to dashboard page when login is successful */
 	document.getElementById('loginForm').addEventListener('submit', function (event) {
 	  event.preventDefault();
+	  console.log('click to login button');
 	  const username = document.getElementById('username').value;
 	  const password = document.getElementById('password').value;
-  
+
 	  if (username === '' && password === '') {
 		console.log('Login successful');
 		navigateTo('dashboard', username);
@@ -60,14 +64,27 @@ function login(navigateTo) {
 		loginAlert.classList.remove('d-none');
 	  }
 	});
-  
+
 	/* navigate to create account page when create account is clicked */
 	document.getElementById('create').addEventListener('click', function (event) {
 	  event.preventDefault();
 	  navigateTo('/views/register');
 	});
 
-
-	
-
-  }
+	/* lock button */
+	document.addEventListener('click', function (event) {
+		if (event.target.classList.contains('unmask') || event.target.closest('.unmask')) {
+		  const button = event.target.closest('.unmask');  // Target the entire button
+		  const input = button.previousElementSibling;
+		  if (input.type === 'password') {
+			input.type = 'text';
+			button.querySelector('i').classList.remove('fa-lock');
+			button.querySelector('i').classList.add('fa-lock-open');
+		  } else {
+			input.type = 'password';
+			button.querySelector('i').classList.remove('fa-lock-open');
+			button.querySelector('i').classList.add('fa-lock');
+		  }
+		}
+	  });
+}
