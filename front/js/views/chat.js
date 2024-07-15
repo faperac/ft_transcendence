@@ -1,4 +1,4 @@
-function chat(naviagateTo, $player_name, friend_name) {
+function chat(navigateTo, $player_name, friend_name) {
 	document.getElementById('ft_transcendence').innerHTML = `
 	  <div class="container-fluid chat-container">
 		<div class="row">

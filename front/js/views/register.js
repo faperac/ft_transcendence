@@ -17,10 +17,40 @@ function register(navigateTo) {
           </div>
         </p>
         <p>
-          <label for="profile-photo">Choose profil picture</label>
-          <div class="text-center" id=chose_pp>
-            <img src="../../content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" style="width: 200px; height: 200px; " alt="Profile Picture">
-          </div>
+
+    <div class="choose-avatar">
+    <span class="title">Choose your avatar</span>
+    <div class="avatars-container">
+      <span class="left"></span>
+      <div class="avatars">
+        <div class="avatar-item" style="background-image: url('https://i.ibb.co/C2WLdyY/avatar1.png');">
+          <span id="text-avatar">Choose</span>
+        </div>
+        <div class="avatar-item" style="background-image: url('https://i.ibb.co/0t3JTMz/avatar2.png');">
+          <span id="text-avatar">Choose</span>
+        </div>
+        <div class="avatar-item" style="background-image: url('https://i.ibb.co/K08BjJx/avatar3.png');">
+          <span id="text-avatar">Choose</span>
+        </div>
+        <div class="avatar-item" style="background-image: url('https://i.ibb.co/6XW1X2L/avatar4.png');">
+          <span id="text-avatar">Choose</span>
+        </div>
+        <div class="avatar-item" style="background-image: url('https://i.ibb.co/DVfTxB2/avatar5.png');">
+          <span id="text-avatar">Choose</span>
+        </div>
+        <div class="avatar-item" style="background-image: url('https://i.ibb.co/Bzvqgg3/avatar6.png');">
+          <span id="text-avatar">Choose</span>
+        </div>
+        <div class="avatar-item" style="background-image: url('https://i.ibb.co/FDg3t8m/avatar7.png');">
+          <span id="text-avatar">Choose</span>
+        </div>
+      </div>
+      <span class="right"></span>
+    </div>
+    <button class="button-simple">Back</button>
+  </div>
+
+
         </p>
         <button id ="registerbutton" type="submit" class="btn btn-primary btn-block">Register</button>
         <button id ="registerbutton42"type="submit" class="btn btn-primary btn-block">Register with 42</button>

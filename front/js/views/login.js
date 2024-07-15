@@ -1,7 +1,7 @@
 function login(navigateTo) {
 	document.getElementById('ft_transcendence').innerHTML = `
 	<h1>ft_pong</h1>
-	<img src="content/logo_400_400.png" alt="Logo" style="display: block; margin: 0 auto;" />
+	<img src="content/logo_400_400.png" id="logo_pong_login" alt="Logo" />
     	<div id="loginAlert" class="alert alert-danger d-none" role="alert">
       	Invalid username or password!
     	</div>
@@ -22,7 +22,7 @@ function login(navigateTo) {
 		</p>
 		<button type="submit" class="btn btn-primary">Login</button>
 		<div class="text-center">
-		  <a href="" data-link="register">create account</a>
+		  <a href="" data-link="register" >create account</a>
 		</div>
 	  </form>
 	</div>

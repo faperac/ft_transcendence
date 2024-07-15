@@ -12,12 +12,11 @@ function dashboard(navigateTo, $player_name) {
 			${$player_name}'s Dashboard
 		</h3>
 		<div class="text-center" id=profile-picture>
-			<img src="content/profil.png" class="img-thumbnail rounded-circle d-flex justify-content-center" alt="Profile Picture">
+			<img src="https://i.ibb.co/C2WLdyY/avatar1.png" class="img-thumbnail rounded-circle d-flex justify-content-center" alt="Profile Picture">
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 			<div class="col-md-3 sidebar">
-				<h4 id="title_dashboard">Friends</h4>
 				<ul id="friends" class="list-group">
 					<li class="list-group-item" data-friend="Friend1">Friend1</li>
 					<li class="list-group-item" data-friend="Friend2">Friend2</li>
@@ -38,15 +37,15 @@ function dashboard(navigateTo, $player_name) {
 					<div class="card">
 						<div class="card-body">
 							<div class="btn-group" id="play_button" "role="group" aria-label="Basic example">
-								<button type="button" class="btn btn-primary">Play</button>
-								<button type="button" class="btn btn-primary">Play with friend</button>
-								<button type="button" class="btn btn-primary">Play tournament</button>
+								<button type="button" id="game_alone" class="btn btn-primary">Play</button>
+								<button type="button" id="game_friend" class="btn btn-primary">Play with friend</button>
+								<button type="button" id="game_tournament" class="btn btn-primary">Play tournament</button>
 						  	</div>
 						</div>
 					</div>
 					<div class="card">
 						<div class="card-body">
-							<h5 class="card-title">Leaderboard</h5>
+							<h5 class="card-title">Global Tchat</h5>
 							<ul class="list-group">
 								<li class="list-group-item">Player1</li>
 								<li class="list-group-item">Player2</li>
@@ -73,13 +72,19 @@ function attachEventHandlers3(navigateTo, $player_name) {
         navigateTo('login');
     });
 
-    document.getElementById('play_button').addEventListener('click', function (event) {
+    document.getElementById('game_alone').addEventListener('click', function (event) {
         event.preventDefault();
-        console.log('Play button clicked');
+        console.log('Play game_alone button clicked');
         navigateTo('gameplay', $player_name);
     });
 
-    // Show dropdown menu when friend is clicked
+    document.getElementById('game_friend').addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('Play game_friend button clicked');
+        navigateTo('gameplay_friends', $player_name);
+    });
+
+    // friend menu 
     document.querySelectorAll('#friends .list-group-item').forEach(item => {
         item.addEventListener('click', function (event) {
             event.stopPropagation();
@@ -122,6 +127,6 @@ function attachEventHandlers3(navigateTo, $player_name) {
         event.preventDefault();
         const friendName = document.getElementById('friendDropdown').getAttribute('data-friend');
         console.log(`Start a game with ${friendName}`);
-        // Add your logic here to start a game
+		gameplay(navigateTo, $player_name);
     });
 }

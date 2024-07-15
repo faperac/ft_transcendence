@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     login: (navigateTo) => login(navigateTo),
     dashboard: (navigateTo, ...args) => dashboard(navigateTo, ...args),
     gameplay: (navigateTo, ...args) => gameplay(navigateTo, ...args),
+    gameplay_friends: (navigateTo, ...args) => gameplay_friends(navigateTo, ...args),
     chat: (navigateTo, playerName, friendName) => chat(navigateTo, playerName, friendName)
   };
 
