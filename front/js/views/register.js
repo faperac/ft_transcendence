@@ -12,59 +12,54 @@ function register(navigateTo) {
           <div class="password-wrapper">
             <input type="password" value="" placeholder="Enter Password" id="password" class="password">
             <button class="unmask" type="button" title="Mask/Unmask password to check content">
-						  <i class="fas fa-lock"></i>
-					  </button>
+              <i class="fas fa-lock"></i>
+            </button>
           </div>
         </p>
         <p>
-
-    <div class="choose-avatar">
-    <span class="title">Choose your avatar</span>
-    <div class="avatars-container">
-      <span class="left"></span>
-      <div class="avatars">
-        <div class="avatar-item" style="background-image: url('https://i.ibb.co/C2WLdyY/avatar1.png');">
-          <span id="text-avatar">Choose</span>
+        <div class="choose-avatar">
+          <div class="avatars-container" id="avatars-container">
+            <span class="left" id="left_click"></span>
+            <div class="avatars" id="avatars">
+              <div class="avatar-item" style="background-image: url('https://i.ibb.co/C2WLdyY/avatar1.png');">
+                <span id="text-avatar">Choose</span>
+              </div>
+              <div class="avatar-item" style="background-image: url('https://i.ibb.co/0t3JTMz/avatar2.png');">
+                <span id="text-avatar">Choose</span>
+              </div>
+              <div class="avatar-item" style="background-image: url('https://i.ibb.co/K08BjJx/avatar3.png');">
+                <span id="text-avatar">Choose</span>
+              </div>
+              <div class="avatar-item" style="background-image: url('https://i.ibb.co/6XW1X2L/avatar4.png');">
+                <span id="text-avatar">Choose</span>
+              </div>
+              <div class="avatar-item" style="background-image: url('https://i.ibb.co/DVfTxB2/avatar5.png');">
+                <span id="text-avatar">Choose</span>
+              </div>
+              <div class="avatar-item" style="background-image: url('https://i.ibb.co/Bzvqgg3/avatar6.png');">
+                <span id="text-avatar">Choose</span>
+              </div>
+              <div class="avatar-item" style="background-image: url('https://i.ibb.co/FDg3t8m/avatar7.png');">
+                <span id="text-avatar">Choose</span>
+              </div>
+            </div>
+            <span class="right" id="right_click"></span>
+          </div>
         </div>
-        <div class="avatar-item" style="background-image: url('https://i.ibb.co/0t3JTMz/avatar2.png');">
-          <span id="text-avatar">Choose</span>
-        </div>
-        <div class="avatar-item" style="background-image: url('https://i.ibb.co/K08BjJx/avatar3.png');">
-          <span id="text-avatar">Choose</span>
-        </div>
-        <div class="avatar-item" style="background-image: url('https://i.ibb.co/6XW1X2L/avatar4.png');">
-          <span id="text-avatar">Choose</span>
-        </div>
-        <div class="avatar-item" style="background-image: url('https://i.ibb.co/DVfTxB2/avatar5.png');">
-          <span id="text-avatar">Choose</span>
-        </div>
-        <div class="avatar-item" style="background-image: url('https://i.ibb.co/Bzvqgg3/avatar6.png');">
-          <span id="text-avatar">Choose</span>
-        </div>
-        <div class="avatar-item" style="background-image: url('https://i.ibb.co/FDg3t8m/avatar7.png');">
-          <span id="text-avatar">Choose</span>
-        </div>
-      </div>
-      <span class="right"></span>
-    </div>
-    <button class="button-simple">Back</button>
-  </div>
-
-
         </p>
-        <button id ="registerbutton" type="submit" class="btn btn-primary btn-block">Register</button>
-        <button id ="registerbutton42"type="submit" class="btn btn-primary btn-block">Register with 42</button>
-        <button id ="arrowbackregister" class="btn btn-primary ">  
+        <button id="registerbutton" type="submit" class="btn btn-primary btn-block">Register</button>
+        <button id="registerbutton42" type="button" class="btn btn-primary btn-block">Register with 42</button>
+        <button id="arrowbackregister" class="btn btn-primary">
           <i class="bi bi-arrow-left"></i>
         </button>
       </form>
     </div>
     <footer class="py-3 my-4">
-		  <p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
-	  </footer>
+      <p class="text-center text-body-secondary">© 2024 42Company, Inc</p>
+    </footer>
   `;
 
-  document.addEventListener('click', function (event) {
+  document.addEventListener('click', function(event) {
     if (event.target.classList.contains('unmask') || event.target.closest('.unmask')) {
       const button = event.target.closest('.unmask');
       const input = button.previousElementSibling;
@@ -80,17 +75,27 @@ function register(navigateTo) {
     }
   });
 
-  document.getElementById('registerForm').addEventListener('submit', function (event) {
+  document.getElementById('registerForm').addEventListener('submit', function(event) {
     event.preventDefault();
-
     // create account and add to database
-
     alert('Account created successfully');
     navigateTo('login');
   });
 
-  document.getElementById('arrowbackregister').addEventListener('click', function (event) {
+  document.getElementById('arrowbackregister').addEventListener('click', function(event) {
     event.preventDefault();
     navigateTo('login');
+  });
+
+  document.getElementById('left_click').addEventListener('click', function(event) {
+    console.log('left click');
+    event.preventDefault();
+    document.getElementById('avatars').scrollLeft -= 200;
+  });
+
+  document.getElementById('right_click').addEventListener('click', function(event) {
+    console.log('right click');
+    event.preventDefault();
+    document.getElementById('avatars').scrollLeft += 200;
   });
 }

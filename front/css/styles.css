@@ -38,6 +38,8 @@ body {
     align-items: center;
     height: 90vh;
     margin: 0;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .view {
@@ -162,7 +164,7 @@ input::placeholder {
     width: 100%;
 }
 
-.password-wrapper input[type="text"], 
+.password-wrapper input[type="text"],
 .password-wrapper input[type="password"] {
     width: calc(100% - 40px);
     width: 100%;
