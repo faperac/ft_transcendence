@@ -12,7 +12,7 @@ function dashboard(navigateTo, $player_name) {
 			${$player_name}'s Dashboard
 		</h3>
 		<div class="text-center" id=profile-picture>
-			<img src="https://i.ibb.co/C2WLdyY/avatar1.png" class="img-thumbnail rounded-circle d-flex justify-content-center" alt="Profile Picture">
+			<img src="https://i.ibb.co/FDg3t8m/avatar7.png" class="img-thumbnail rounded-circle d-flex justify-content-center" alt="Profile Picture">
 		</div>
 		<div class="container-fluid">
 			<div class="row">
@@ -44,14 +44,14 @@ function dashboard(navigateTo, $player_name) {
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Global Tchat</h5>
-							<ul class="list-group">
-								<li class="list-group-item">Player1</li>
-								<li class="list-group-item">Player2</li>
-								<li class="list-group-item">Player3</li>
-							</ul>
+						<div class="chat-container">
+							<div class="chat-log" id="chat-log"> 
 						</div>
+						<div class="input-container">
+							<textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
+							<button id="send-button">Send</button>
+						</div>
+					<f/div>
 					</div>
 				</div>
 			</div>
@@ -129,4 +129,41 @@ function attachEventHandlers3(navigateTo, $player_name) {
         console.log(`Start a game with ${friendName}`);
 		gameplay(navigateTo, $player_name);
     });
+
+	// Chat functionality
+	document.getElementById('send-button').addEventListener('click', function (event) {
+		event.preventDefault();
+		const messageInput = document.getElementById('message-input');
+		const message = formatMessage(messageInput.value);
+		const chatLog = document.getElementById('chat-log');
+		const messageElement = document.createElement('div');
+		messageElement.textContent = message;
+		chatLog.appendChild(messageElement);
+		messageInput.value = '';
+		// adjustInputHeight();
+	});
+
+	// Send message when pressing Enter key
+	document.addEventListener("keydown", function (event) {
+		if (event.key === 'Enter' && !event.shiftKey) {
+			event.preventDefault();
+			document.getElementById('send-button').click();
+		}
+	});
+}
+
+
+
+function formatMessage(message) {
+	if (message.startsWith("```")) {
+		return `<pre>${message}</pre>`;
+	}
+	message = message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+	return message.replace(/(```[\s\S]*?```)/g, '<pre>$1</pre>');
+  }
+
+  // Adjust the height of the input field based on its content
+function adjustInputHeight() {
+	messageInput.style.height = 'auto';
+	messageInput.style.height = `${messageInput.scrollHeight}px`;
 }

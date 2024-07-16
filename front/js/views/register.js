@@ -1,6 +1,9 @@
 function register(navigateTo) {
   document.getElementById('ft_transcendence').innerHTML = `
-    <h1>Register</h1>
+  <ul class="nav navbar-expand-lg justify-content-center">
+    <li class="breadcrumb-item active" id="arrowbackregister" style="font-weight: 800" "aria-current="page">Back</li>
+	</ul>
+  <h1>Register</h1>
     <div class="container login-container">
       <form id="registerForm">
         <p>
@@ -49,9 +52,6 @@ function register(navigateTo) {
         </p>
         <button id="registerbutton" type="submit" class="btn btn-primary btn-block">Register</button>
         <button id="registerbutton42" type="button" class="btn btn-primary btn-block">Register with 42</button>
-        <button id="arrowbackregister" class="btn btn-primary">
-          <i class="bi bi-arrow-left"></i>
-        </button>
       </form>
     </div>
     <footer class="py-3 my-4">

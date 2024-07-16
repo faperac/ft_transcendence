@@ -1,7 +1,6 @@
 function login(navigateTo) {
 	document.getElementById('ft_transcendence').innerHTML = `
-	<h1>ft_pong</h1>
-	<img src="content/logo_400_400.png" id="logo_pong_login" alt="Logo" />
+	<img src="content/logo_400_400.png" id="logo_pong_login" alt="Logo" width="320" height="320" style="margin-bot:10%;">
     	<div id="loginAlert" class="alert alert-danger d-none" role="alert">
       	Invalid username or password!
     	</div>
@@ -9,7 +8,7 @@ function login(navigateTo) {
 	  <form id="loginForm">
 		<p>
 		  <label for="username">username</label>
-		  <input type="text" value="" placeholder="Enter Username" id="username">
+		  <input type="text" class="value="" placeholder="Enter Username" id="username">
 		</p>
 		<p>
 		  <label for="password">password</label>
@@ -22,7 +21,7 @@ function login(navigateTo) {
 		</p>
 		<button type="submit" class="btn btn-primary">Login</button>
 		<div class="text-center">
-		  <a href="" data-link="register" >create account</a>
+			<button type="button" id="create_account" class="btn btn-outline-light">Create account</button>
 		</div>
 	  </form>
 	</div>
@@ -67,7 +66,7 @@ function attachEventHandlers(navigateTo) {
 	});
 
 	/* navigate to create account page when create account is clicked */
-	const createButton = document.getElementById('create');
+	const createButton = document.getElementById('create_account');
 	if (createButton) {
 		createButton.addEventListener('click', function (event) {
 			event.preventDefault();
